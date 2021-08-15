@@ -333,6 +333,7 @@ AFRAME.registerComponent("ik-controller", {
 
       const camera = this.ikRoot.camera.object3D;
       camera.getWorldPosition(cameraWorld);
+      console.log(camera.getWorldPosition());
 
       // Check player camera
       this.isInView = isInViewOfCamera(this.playerCamera, cameraWorld);
