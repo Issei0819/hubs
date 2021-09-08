@@ -7,7 +7,7 @@ AFRAME.registerComponent("avatar-inspect-collider", {
         new THREE.MeshBasicMaterial({
           depthWrite: false,
           opacity: 0,
-          transparent: false,
+          transparent: true,
           color: 0x020202,
           side: THREE.BackSide
         })
