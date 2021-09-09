@@ -56,7 +56,98 @@
     <div id="UI-layer"
         style="position: fixed;top: 0;left: 0;width: 100vw;height: 100vh;background-color: transparent;pointer-events: none;"
     >
-        <p style="background-color: #ffffff; padding: 5ppx 10px;">aaaaaa</p>
+        <div id="life-frame">
+            <div id="life-bar"></div>
+            <div id="life-mark"></div>
+        </div>
+        
+        <div id="btns-wrap">
+            <div id="increase-btn" onclick="alterLife( 10 )">+</div>
+            <div id="decrease-btn" onclick="alterLife( -10 )">-</div>
+        </div>
+
+        <style>
+            #life-frame {
+                margin: 0 auto;
+                width: 80%;
+                background-color: rgba(10, 0, 50, 0.6);
+                display: flex;
+                padding: 3px 3px;
+            }
+
+            #life-bar {
+                height: 3px;
+                background-color: rgb(0, 255, 255);
+                transition: 300ms
+            }
+
+            #life-mark {
+                width: 3px;
+                height: 3px;
+                border-radius: 3px;
+                background-color: rgb(255, 255, 255);
+                filter: saturate(500%);
+                box-shadow: 0 0 5px 3px rgb(200, 255, 255),
+                            0 0 7px 7px rgb(100, 255, 255);
+            }
+
+            #btns-wrap {
+                width: 100px;
+                margin: 0 auto;
+                display: flex;
+                justify-content: space-around;
+            }
+
+            #increase-btn,#decrease-btn {
+                margin-top: 10px;
+                width: 30px;
+                height: 30px;
+                border-radius: 5px;
+                color: white;
+                background-color: dodgerblue;
+                text-align: center;
+                line-height: 30px;
+                box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+                user-select: none;
+            }
+
+            #increase-btn:active,#decrease-btn:active {
+                transform: translate(2px,2px);
+                box-shadow: none;
+            }
+        </style>
+
+        <script type="text/javascript">
+            const lifeBar = document.getElementById('life-bar')         // ライフバー
+            const lifeMark = document.getElementById('life-mark')       // ライフの光部分
+            const increaseBtn = document.getElementById('increase-btn') // + ボタン
+            const decreaseBtn = document.getElementById('decrease-btn') // - ボタン
+            let life = 100                                              // ライフ初期値
+            lifeBar.style.width = "100%"                                // ライフ初期幅
+
+            // *** ライフ変更処理 ***
+            function alterLife( value ){
+                // lifeの値を算出する
+                life += value 
+                if ( life <= 0 ){
+                    // 算出の結果 0 以下になった場合
+                    life = 0
+                    // 0.3秒後に光部分を非表示にする
+                    setTimeout(function(){
+                        lifeMark.style.visibility = 'hidden'
+                    }, 300)
+                } else {
+                    // 算出の結果 100 を超過した場合
+                    if ( life > 100 ) {
+                        life = 100
+                    }
+                    // 光部分を表示する
+                    lifeMark.style.visibility = 'visible'
+                }
+                // スタイル(幅)を更新する
+                lifeBar.style.width = life + "%"
+            }
+        </script>
     </div>
 
     <a-scene
