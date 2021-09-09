@@ -53,6 +53,12 @@
 <body>
     <div id="support-root"></div>
 
+    <div id="UI-layer"
+        style="position: fixed;top: 0;left: 0;width: 100vw;height: 100vh;background-color: transparent;"
+    >
+        <p>aaaaaa</p>
+    </div>
+
     <a-scene
         disable-resize
         embedded
@@ -1102,16 +1108,6 @@
             inspect-pivot-child-selector="selector:.inspect-pivot"
         >
 
-       
-            <a-box 
-                position="0 1 -3"
-                rotation="0 0 0"
-                color="#000"
-                scale="1 1 1">
-            </a-box>
-        
-
-
             <a-entity
                 id="player-hud"
                 hud-controller="head: #viewing-camera;"
@@ -1212,7 +1208,7 @@
                 position="0 1.6 0"
             >
                 <a-box 
-                    position="0 1 -3"
+                    position="0 0 -3"
                     rotation="0 0 0"
                     color="#000"
                     scale="1 1 1">
