@@ -54,99 +54,243 @@
     <div id="support-root"></div>
 
     <div id="UI-layer"
-        style="position: fixed;top: 0;left: 0;width: 100vw;height: 100px;background-color: #ffffff;pointer-events: none;z-index: 20;"
+        style="position: fixed;top: 0;left: 0;width: 100vw;height: 200px;background-color: #ffffff;pointer-events: none;z-index: 20;"
     >
-        <div id="life-frame">
-            <div id="life-bar"></div>
-            <div id="life-mark"></div>
+        <div id="gauge-container">
+            <div id="background">
+                <div id="background-top"></div>
+                <div id="background-bottom"></div>
+                <div id="back-gauge" class="full"></div>
+                <div id="front-gauge" class="full"></div>
+                <div id="frame">
+                    <div id="triangle-tl"></div>
+                    <div id="triangle-tr"></div>
+                    <div id="triangle-bl"></div>
+                    <div id="triangle-br"></div>
+                </div>
+            </div>
         </div>
-        
-        <div id="btns-wrap">
-            <div id="increase-btn" onclick="alterLife( 10 )">+</div>
-            <div id="decrease-btn" onclick="alterLife( -10 )">-</div>
+        <div id="btns">
+            <button onclick="attack(5)">攻撃</button>
         </div>
 
         <style>
-            #life-frame {
-                margin: 0 auto;
-                width: 80%;
-                background-color: rgba(10, 0, 50, 0.6);
-                display: flex;
-                padding: 3px 3px;
+            #gauge-container * {
+                box-sizing: border-box;
             }
 
-            #life-bar {
-                height: 3px;
-                background-color: rgb(0, 255, 255);
-                transition: 300ms
-            }
-
-            #life-mark {
-                width: 3px;
-                height: 3px;
-                border-radius: 3px;
-                background-color: rgb(255, 255, 255);
-                filter: saturate(500%);
-                box-shadow: 0 0 5px 3px rgb(200, 255, 255),
-                            0 0 7px 7px rgb(100, 255, 255);
-            }
-
-            #btns-wrap {
-                width: 100px;
-                margin: 0 auto;
-                display: flex;
-                justify-content: space-around;
-            }
-
-            #increase-btn,#decrease-btn {
-                margin-top: 10px;
-                width: 30px;
+            #gauge-container {
+                width: 100%;
                 height: 30px;
-                border-radius: 5px;
-                color: white;
-                background-color: dodgerblue;
-                text-align: center;
-                line-height: 30px;
-                box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-                user-select: none;
+                background: black;
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
 
-            #increase-btn:active,#decrease-btn:active {
-                transform: translate(2px,2px);
-                box-shadow: none;
+            #background {
+                position: relative;
+                z-index: 0;
+                width: calc(100% - 4px);
+                height: calc(100% - 4px);
+                display: flex;
+                align-items: center;
+            }
+
+            #background-top,#background-bottom {
+                position: absolute;
+                z-index: 1;
+                width: 100%;
+                height: 50%;
+            }
+
+            #background-top {
+                top: 0%;
+                background: linear-gradient(to right,rgb(45,45,45),rgb(60,60,60));
+            }
+
+            #background-bottom {
+                bottom: 0%;
+                background: linear-gradient(to right,rgb(35,35,35),rgb(20,20,20));
+            }
+
+            #back-gauge,#front-gauge {
+                position: absolute;
+                z-index: 2;
+                width: 100%;
+                height: 60%;
+            }
+
+            #back-gauge {
+                background: rgb(160, 15, 15);
+                border-top: solid rgb(240, 30, 10) 3px;
+                border-bottom: solid rgb(240, 30, 10) 3px;
+                opacity: 0;
+            }
+
+            #back-gauge.full {
+                background: repeating-linear-gradient(45deg, rgb(200, 160, 70) 0%, rgb(250, 250, 180) 10%, rgb(200, 160, 70) 35%);
+                border-color: rgb(220, 220, 120);
+                opacity: 1;
+            }
+
+            .fadeout {
+                animation: fadeOut 2s forwards;
+            }
+
+            @keyframes fadeOut {
+                0% { opacity: 0.9 }
+                50% { opacity: 0.9 }
+                100% { opacity: 0 }
+            }
+
+            #front-gauge {
+                border-style: solid;
+                border-width: 3px 0;
+            }
+
+            #front-gauge.full {
+                background: linear-gradient(45deg, transparent 0% 5%, rgb(255, 255, 200) 7% 9%, transparent 11% 12%, rgb(255, 255, 200) 14%, transparent 16% ); 
+                background-size: 200% 200%;
+                border: none;
+                animation: flow 5s infinite ease;
+            }
+
+            @keyframes flow {
+                0% {
+                    opacity: 0;
+                    background-position: -60%;
+                }
+                40% {
+                    background-position: -60%;
+                    opacity: 1;
+                }
+                80% {
+                    background-position: -10%;
+                    opacity: 0.4;
+                }
+                100% {
+                    background-position: -10%;
+                    opacity: 0;
+                }
+            }
+
+            .normal {
+                background: linear-gradient(to left, rgba(36, 206, 87, 0.8), rgba(189, 224, 61, 0.8));
+                border-color: lightgreen;
+            }
+
+            #frame {
+                position: absolute;
+                z-index: 3;
+                width: 100%;
+                height: 100%;
+                border-top: solid 2px darkgray;
+                border-bottom: solid 2px darkgray;
+                border-left: solid 3px white;
+                border-right: solid 3px white;
+            }
+
+            #triangle-tl {
+                position: absolute;
+                top: -2px;
+                left: -3px;
+                width: 0;
+                height: 0;
+                border-top: 7px solid white;
+                border-right: 7px solid transparent;
+            }
+
+            #triangle-tr {
+                position: absolute;
+                top: -2px;
+                right: -3px;
+                width: 0;
+                height: 0;
+                border-top: 7px solid white;
+                border-left: 7px solid transparent;
+            }
+
+            #triangle-bl {
+                position: absolute;
+                bottom: -2px;
+                left: -3px;
+                width: 0;
+                height: 0;
+                border-bottom: 7px solid white;
+                border-right: 7px solid transparent;
+            }
+
+            #triangle-br {
+                position: absolute;
+                bottom: -2px;
+                right: -3px;
+                width: 0;
+                height: 0;
+                border-bottom: 7px solid white;
+                border-left: 7px solid transparent;
+            }
+
+            #btns {
+                display: flex;
+                justify-content: left;
+                margin-top: 10px;
+            }
+            #btns button {
+                width: 5em;
+                margin-right: 1em;
             }
         </style>
 
-        <script type="text/javascript">
-            const lifeBar = document.getElementById('life-bar')         // ライフバー
-            const lifeMark = document.getElementById('life-mark')       // ライフの光部分
-            const increaseBtn = document.getElementById('increase-btn') // + ボタン
-            const decreaseBtn = document.getElementById('decrease-btn') // - ボタン
-            let life = 100                                              // ライフ初期値
-            lifeBar.style.width = "100%"                                // ライフ初期幅
+        <script>
+            const frontGauge = document.getElementById("front-gauge");
+            const backGauge = document.getElementById("back-gauge");
+            const comboLimit = 1000;
+            let life = 100;
+            let backGaugeIsAnimation = false;
+            let gaugeMode = "full";
+            let damagedTime  = new Date().getTime();
 
-            // *** ライフ変更処理 ***
-            function alterLife( value ){
-                // lifeの値を算出する
-                life += value 
-                if ( life <= 0 ){
-                    // 算出の結果 0 以下になった場合
-                    life = 0
-                    // 0.3秒後に光部分を非表示にする
-                    setTimeout(function(){
-                        lifeMark.style.visibility = 'hidden'
-                    }, 300)
-                } else {
-                    // 算出の結果 100 を超過した場合
-                    if ( life > 100 ) {
-                        life = 100
-                    }
-                    // 光部分を表示する
-                    lifeMark.style.visibility = 'visible'
+            // fadeoutアニメーション開始時
+            backGauge.addEventListener("animationstart", () => {
+                backGaugeIsAnimation = true;
+            });
+
+            // fadeoutアニメーション終了時
+            backGauge.addEventListener("animationend", () => {
+                backGauge.style.width = life + "%";
+                backGauge.classList.remove("fadeout");
+                backGaugeIsAnimation = false;
+            });
+
+            // *** 攻撃ボタン *** //
+            function attack(damage){
+                // ゲージ状態更新
+                if ( gaugeMode === "full" ){
+                    frontGauge.classList.remove("full");
+                    backGauge.classList.remove("full");
+                    frontGauge.classList.add("normal");
+                    gaugeMode = "normal";
                 }
-                // スタイル(幅)を更新する
-                lifeBar.style.width = life + "%"
+                // コンボ判定
+                const currentTime = new Date().getTime();
+                if ( currentTime - damagedTime > comboLimit ){
+                    backGauge.style.width = life + "%";
+                }
+                // ダメージ処理
+                life < damage ? life = 0 : life -= damage;
+                frontGauge.style.width = life + "%";
+                damagedTime = new Date().getTime();
+                // 進行中のfadeoutアニメーションを終了
+                if ( backGaugeIsAnimation ){
+                    backGauge.classList.remove("fadeout");
+                    void backGauge.offsetWidth;
+                }
+                // fadeoutアニメーション開始
+                backGauge.classList.add("fadeout");
             }
+
+            
         </script>
     </div>
 
@@ -1302,7 +1446,8 @@
                     position="0 -1 -3"
                     rotation="0 0 0"
                     color="#000"
-                    scale="1 1 1">
+                    scale="1 1 1"
+                    class="scene">
                 </a-box>
                 <a-entity class="inspect-pivot" inspect-pivot-offset-from-camera></a-entity>
                 <a-entity
