@@ -1445,14 +1445,25 @@
                 set-yxz-order
                 position="0 1.6 0"
             >
-                <a-box 
+                <!--<a-box 
                     position="0 -1 -3"
                     rotation="0 0 0"
                     color="#000"
                     scale="1 1 1"
                     visible="true"
-                    networked>
-                </a-box>
+                    >
+                </a-box>-->
+                <a-assets>
+                    <a-asset-items id="gun" src="hubs\src\assets\models\simplegun.glb" ></a-asset-items>
+                  </a-assets>
+                  <a-entity
+                    gltf-model="#gun"
+                    scale="1 1 1" 
+                    position="0 -1 -2"
+                    rotation="0 0 0"
+                    color="#000"
+                    visible="true"
+                    ></a-entity>
                 <a-entity class="inspect-pivot" inspect-pivot-offset-from-camera></a-entity>
                 <a-entity
                     id="gaze-teleport"
