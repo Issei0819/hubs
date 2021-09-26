@@ -12,7 +12,8 @@
     <link rel="manifest" href="/manifest.webmanifest">
     <!-- iOS (for "Add to Homescreen") -->
     <meta name="mobile-web-app-capable" content="yes">
-    <title>Room | App by VLEAP</title>
+    <title>Room | App by Company</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet"> 
     <!-- Google Analytics -->
     <!-- NOTE GA tracking is disabled by default. You'll need to set the GA_TRACKING_ID build variable to enable it. -->
@@ -53,250 +54,6 @@
 <body>
     <div id="support-root"></div>
 
-    <!--
-    <div id="UI-layer"
-        style="position: fixed;top: 0;left: 0;width: 100vw;height: 200px;background-color: transparent;z-index: 20;"
-    >
-        <div id="gauge-container">
-            <div id="background">
-                <div id="background-top"></div>
-                <div id="background-bottom"></div>
-                <div id="back-gauge" class="full"></div>
-                <div id="front-gauge" class="full"></div>
-                <div id="frame">
-                    <div id="triangle-tl"></div>
-                    <div id="triangle-tr"></div>
-                    <div id="triangle-bl"></div>
-                    <div id="triangle-br"></div>
-                </div>
-            </div>
-        </div>
-        
-
-        <style>
-            #gauge-container * {
-                box-sizing: border-box;
-            }
-
-            #gauge-container {
-                width: 80%;
-                height: 30px;
-                background: black;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                margin: 20px auto;
-            }
-
-            #background {
-                position: relative;
-                z-index: 0;
-                width: calc(100% - 4px);
-                height: calc(100% - 4px);
-                display: flex;
-                align-items: center;
-            }
-
-            #background-top,#background-bottom {
-                position: absolute;
-                z-index: 1;
-                width: 100%;
-                height: 50%;
-            }
-
-            #background-top {
-                top: 0%;
-                background: linear-gradient(to right,rgb(45,45,45),rgb(60,60,60));
-            }
-
-            #background-bottom {
-                bottom: 0%;
-                background: linear-gradient(to right,rgb(35,35,35),rgb(20,20,20));
-            }
-
-            #back-gauge,#front-gauge {
-                position: absolute;
-                z-index: 2;
-                width: 100%;
-                height: 60%;
-            }
-
-            #back-gauge {
-                background: rgb(160, 15, 15);
-                border-top: solid rgb(240, 30, 10) 3px;
-                border-bottom: solid rgb(240, 30, 10) 3px;
-                opacity: 0;
-            }
-
-            #back-gauge.full {
-                background: repeating-linear-gradient(45deg, rgb(200, 160, 70) 0%, rgb(250, 250, 180) 10%, rgb(200, 160, 70) 35%);
-                border-color: rgb(220, 220, 120);
-                opacity: 1;
-            }
-
-            .fadeout {
-                animation: fadeOut 2s forwards;
-            }
-
-            @keyframes fadeOut {
-                0% { opacity: 0.9 }
-                50% { opacity: 0.9 }
-                100% { opacity: 0 }
-            }
-
-            #front-gauge {
-                border-style: solid;
-                border-width: 3px 0;
-            }
-
-            #front-gauge.full {
-                background: linear-gradient(45deg, transparent 0% 5%, rgb(255, 255, 200) 7% 9%, transparent 11% 12%, rgb(255, 255, 200) 14%, transparent 16% ); 
-                background-size: 200% 200%;
-                border: none;
-                animation: flow 5s infinite ease;
-            }
-
-            @keyframes flow {
-                0% {
-                    opacity: 0;
-                    background-position: -60%;
-                }
-                40% {
-                    background-position: -60%;
-                    opacity: 1;
-                }
-                80% {
-                    background-position: -10%;
-                    opacity: 0.4;
-                }
-                100% {
-                    background-position: -10%;
-                    opacity: 0;
-                }
-            }
-
-            .normal {
-                background: linear-gradient(to left, rgba(36, 206, 87, 0.8), rgba(189, 224, 61, 0.8));
-                border-color: lightgreen;
-            }
-
-            #frame {
-                position: absolute;
-                z-index: 3;
-                width: 100%;
-                height: 100%;
-                border-top: solid 2px darkgray;
-                border-bottom: solid 2px darkgray;
-                border-left: solid 3px white;
-                border-right: solid 3px white;
-            }
-
-            #triangle-tl {
-                position: absolute;
-                top: -2px;
-                left: -3px;
-                width: 0;
-                height: 0;
-                border-top: 7px solid white;
-                border-right: 7px solid transparent;
-            }
-
-            #triangle-tr {
-                position: absolute;
-                top: -2px;
-                right: -3px;
-                width: 0;
-                height: 0;
-                border-top: 7px solid white;
-                border-left: 7px solid transparent;
-            }
-
-            #triangle-bl {
-                position: absolute;
-                bottom: -2px;
-                left: -3px;
-                width: 0;
-                height: 0;
-                border-bottom: 7px solid white;
-                border-right: 7px solid transparent;
-            }
-
-            #triangle-br {
-                position: absolute;
-                bottom: -2px;
-                right: -3px;
-                width: 0;
-                height: 0;
-                border-bottom: 7px solid white;
-                border-left: 7px solid transparent;
-            }
-
-            #btns {
-                display: flex;
-                justify-content: left;
-                margin-top: 10px;
-            }
-            #btns button {
-                width: 5em;
-                margin-right: 1em;
-            }
-        </style>
-
-        <script>
-            const frontGauge = document.getElementById("front-gauge");
-            const backGauge = document.getElementById("back-gauge");
-            const comboLimit = 1000;
-            let life = 100;
-            let backGaugeIsAnimation = false;
-            let gaugeMode = "full";
-            let damagedTime  = new Date().getTime();
-
-            // fadeoutアニメーション開始時
-            backGauge.addEventListener("animationstart", () => {
-                backGaugeIsAnimation = true;
-            });
-
-            // fadeoutアニメーション終了時
-            backGauge.addEventListener("animationend", () => {
-                backGauge.style.width = life + "%";
-                backGauge.classList.remove("fadeout");
-                backGaugeIsAnimation = false;
-            });
-
-            // *** 攻撃ボタン *** //
-            function attack(damage){
-
-                console.log("attack")
-                // ゲージ状態更新
-                if ( gaugeMode === "full" ){
-                    frontGauge.classList.remove("full");
-                    backGauge.classList.remove("full");
-                    frontGauge.classList.add("normal");
-                    gaugeMode = "normal";
-                }
-                // コンボ判定
-                const currentTime = new Date().getTime();
-                if ( currentTime - damagedTime > comboLimit ){
-                    backGauge.style.width = life + "%";
-                }
-                // ダメージ処理
-                life < damage ? life = 0 : life -= damage;
-                frontGauge.style.width = life + "%";
-                damagedTime = new Date().getTime();
-                // 進行中のfadeoutアニメーションを終了
-                if ( backGaugeIsAnimation ){
-                    backGauge.classList.remove("fadeout");
-                    void backGauge.offsetWidth;
-                }
-                // fadeoutアニメーション開始
-                backGauge.classList.add("fadeout");
-            }
-
-            
-        </script>
-    </div>
-    -->
-
     <a-scene
         disable-resize
         embedded
@@ -322,7 +79,6 @@
         freeze-controller
         personal-space-bubble="debug: false;"
         rotate-selected-object
-        environment-map
         light="defaultLightsEnabled: false"
     >
         <a-assets>
@@ -463,7 +219,8 @@
 
                         <template data-name="Head">
                             <a-entity
-                                avatar-audio-source="rolloffFactor: 2.0;"
+                                avatar-audio-source
+                                audio-zone-source
                                 personal-space-invader="radius: 0.15; useMaterial: true;"
                                 bone-visibility
                                 body-helper="type: kinematic; collisionFilterGroup: 4; collisionFilterMask: 1;"
@@ -561,7 +318,6 @@
                     position-at-border__freeze="target:.freeze-menu"
                     position-at-border__freeze-unprivileged="target:.freeze-unprivileged-menu"
                     listed-media
-                    use-audio-system-settings
                 >
                     <a-entity class="ui interactable-ui">
                         <a-entity class="freeze-menu" visibility-while-frozen="withinDistance: 100; withPermission: spawn_and_move_media">
@@ -1213,7 +969,8 @@
                     top: 64;
                     right: 66;
                     bottom: 66;
-                    opacity: 1.0;
+                    transparent: false;
+                    alphaTest: 0.1;
                     src: #button"
             ></a-mixin>
 
@@ -1225,7 +982,8 @@
                     top: 64;
                     right: 66;
                     bottom: 66;
-                    opacity: 1.0;
+                    transparent: false;
+                    alphaTest: 0.1;
                     src: #button"
             ></a-mixin>
 
@@ -1237,7 +995,8 @@
                     top: 64;
                     right: 66;
                     bottom: 66;
-                    opacity: 1.0;
+                    transparent: false;
+                    alphaTest: 0.1;
                     src: #action-button"
             ></a-mixin>
 
@@ -1249,7 +1008,8 @@
                     top: 64;
                     right: 66;
                     bottom: 66;
-                    opacity: 1.0;
+                    transparent: false;
+                    alphaTest: 0.1;
                     src: #action-button"
             ></a-mixin>
 
@@ -1267,7 +1027,8 @@
                     top: 64;
                     right: 66;
                     bottom: 66;
-                    opacity: 1.0;
+                    transparent: false;
+                    alphaTest: 0.1;
                     src: #button"
             ></a-mixin>
         </a-assets>
@@ -1345,7 +1106,6 @@
             tags="inspectable: true; preventAudioBoost: true"
             inspect-pivot-child-selector="selector:.inspect-pivot"
         >
-
             <a-entity
                 id="player-hud"
                 hud-controller="head: #viewing-camera;"
@@ -1445,29 +1205,6 @@
                 set-yxz-order
                 position="0 1.6 0"
             >
-                <a-box 
-                    position="0 -1 -3"
-                    rotation="0 0 0"
-                    color="#000"
-                    scale="1 1 1"
-                    visible="true"
-                    >
-                </a-box>
-                <!--<a-assets>
-                    <a-asset-items id="gun" src="https://d-06-virtual.com/hubs/src/assets/models/simplegun.glb" ></a-asset-items>
-                </a-assets>
-                <a-entity
-                    gltf-model="#gun"
-                    scale="1 1 1" 
-                    position="0 -1 -2"
-                    rotation="0 0 0"
-                    color="#000"
-                    visible="true"
-                ></a-entity>-->
-<<<<<<< HEAD
-                    
-=======
->>>>>>> 25615686e903b925685718450ac9f6a16700d70b
                 <a-entity class="inspect-pivot" inspect-pivot-offset-from-camera></a-entity>
                 <a-entity
                     id="gaze-teleport"

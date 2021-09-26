@@ -29,7 +29,6 @@ const getPlayerCamera = (() => {
   return function() {
     if (!playerCamera) {
       playerCamera = document.getElementById("viewing-camera").components.camera.camera;
-      var position_data = [];
     }
 
     return playerCamera;
