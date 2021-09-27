@@ -6,6 +6,12 @@ import { ToolbarButton } from "../input/ToolbarButton";
 import { useMicrophone } from "./useMicrophone";
 import { FormattedMessage } from "react-intl";
 
+
+//talk_count: 会話回数,talk_time: 会話時間
+var is_talk = false;
+var talk_count = 0;
+var talk_time = 0;
+
 export function VoiceButtonContainer({ scene, microphoneEnabled }) {
   const buttonRef = useRef();
 
@@ -17,13 +23,20 @@ export function VoiceButtonContainer({ scene, microphoneEnabled }) {
 
       if (volume < 0.05) {
         rect.setAttribute("height", 0);
+        if (is_talk == true) {
+          talk_count += 1;
+          console.log(talk_count);
+          is_talk = false;
+        }
       } else if (volume < 0.3) {
         rect.setAttribute("y", 8);
         rect.setAttribute("height", 4);
       } else {
         rect.setAttribute("y", 4);
         rect.setAttribute("height", 8);
-        console.log("voice!!!!")
+        talk_time += 1;
+        console.log(talk_time);
+        is_talk = true;
       }
     },
     [volume, isMuted]
