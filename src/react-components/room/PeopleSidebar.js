@@ -51,6 +51,8 @@ var talk_count = 0;
 function getVoiceLabel(micPresence, intl) {
   if (micPresence) {
     if (micPresence.talking) {
+      talk_count = talk_count + 1;
+      console.log(talk_count);
       return intl.formatMessage({ id: "people-sidebar.voice-label.talking", defaultMessage: "Talking" });
     } else if (micPresence.muted) {
       return intl.formatMessage({ id: "people-sidebar.voice-label.muted", defaultMessage: "Muted" });
@@ -70,8 +72,6 @@ function getVoiceIconComponent(micPresence) {
   }
 
   return VolumeOffIcon;
-  talk_count += 1;
-  console.log(talk_count)
 }
 
 function getPresenceMessage(presence, intl) {
