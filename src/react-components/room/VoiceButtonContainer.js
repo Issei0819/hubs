@@ -7,7 +7,7 @@ import { useMicrophone } from "./useMicrophone";
 import { FormattedMessage } from "react-intl";
 
 
-//talk_count: 会話回数,talk_time: 会話時間
+//talk_count: 会話回数,talk_time: 会話時間,is_talk: 会話識別
 var is_talk = false;
 var talk_count = 0;
 var talk_time = 0;
