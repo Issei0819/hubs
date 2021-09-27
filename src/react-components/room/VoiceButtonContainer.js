@@ -23,6 +23,7 @@ export function VoiceButtonContainer({ scene, microphoneEnabled }) {
       } else {
         rect.setAttribute("y", 4);
         rect.setAttribute("height", 8);
+        console.log("voice!!!!")
       }
     },
     [volume, isMuted]

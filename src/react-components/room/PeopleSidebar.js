@@ -43,16 +43,9 @@ function getDeviceIconComponent(ctx) {
   return DesktopIcon;
 }
 
-//talk_count:会話回数、talk_time:会話時間 
-
-var talk_count = 0;
-//var talk_time = 0;
-
 function getVoiceLabel(micPresence, intl) {
   if (micPresence) {
     if (micPresence.talking) {
-      talk_count = talk_count + 1;
-      console.log(talk_count);
       return intl.formatMessage({ id: "people-sidebar.voice-label.talking", defaultMessage: "Talking" });
     } else if (micPresence.muted) {
       return intl.formatMessage({ id: "people-sidebar.voice-label.muted", defaultMessage: "Muted" });
