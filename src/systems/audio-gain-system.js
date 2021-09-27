@@ -80,8 +80,10 @@ export class GainSystem {
       if (isClipped !== shouldBeClipped) {
         if (shouldBeClipped) {
           APP.clippingState.add(el);
+          console.log("start")
         } else {
           APP.clippingState.delete(el);
+          console.log("stop")
         }
         updateAudioSettings(el, audio);
       }
