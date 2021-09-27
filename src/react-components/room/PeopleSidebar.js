@@ -43,6 +43,11 @@ function getDeviceIconComponent(ctx) {
   return DesktopIcon;
 }
 
+//talk_count:会話回数、talk_time:会話時間 
+
+var talk_count = 0;
+//var talk_time = 0;
+
 function getVoiceLabel(micPresence, intl) {
   if (micPresence) {
     if (micPresence.talking) {
@@ -65,6 +70,8 @@ function getVoiceIconComponent(micPresence) {
   }
 
   return VolumeOffIcon;
+  talk_count += 1;
+  console.log(talk_count)
 }
 
 function getPresenceMessage(presence, intl) {
