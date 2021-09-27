@@ -25,7 +25,7 @@ export function VoiceButtonContainer({ scene, microphoneEnabled }) {
         rect.setAttribute("height", 0);
         if (is_talk == true) {
           talk_count += 1;
-          console.log(talk_count);
+          console.log("会話回数 : " + talk_count);
           is_talk = false;
         }
       } else if (volume < 0.3) {
@@ -35,7 +35,7 @@ export function VoiceButtonContainer({ scene, microphoneEnabled }) {
         rect.setAttribute("y", 4);
         rect.setAttribute("height", 8);
         talk_time += 1;
-        console.log(talk_time);
+        console.log("会話時間 : " + talk_time);
         is_talk = true;
       }
     },
