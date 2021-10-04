@@ -42,6 +42,16 @@ function registerNetworkSchemas() {
       "player-info",
       "networked-avatar",
       {
+        selector: ".network-test",
+        component: "position",
+        requiresNetworkUpdate: vectorRequiresUpdate(0.001)
+      },
+      {
+        selector: ".network-test",
+        component: "rotation",
+        requiresNetworkUpdate: vectorRequiresUpdate(0.5)
+      },
+      {
         selector: ".camera",
         component: "position",
         requiresNetworkUpdate: vectorRequiresUpdate(0.001)
