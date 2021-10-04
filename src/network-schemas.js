@@ -25,24 +25,6 @@ function registerNetworkSchemas() {
   // on certain components and properties regardless of hub or user permissions. See permissions-utils.js.
 
   NAF.schemas.add({
-    template: '#my-template',
-    components: [
-      {
-        component: "position",
-        requiresNetworkUpdate: vectorRequiresUpdate(0.001)
-      },
-      {
-        component: "rotation",
-        requiresNetworkUpdate: vectorRequiresUpdate(0.5)
-      },
-      {
-        component: "scale",
-        requiresNetworkUpdate: vectorRequiresUpdate(0.001)
-      }
-    ]
-  });
-
-  NAF.schemas.add({
     template: "#remote-avatar",
     components: [
       {
