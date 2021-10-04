@@ -89,6 +89,12 @@
             <a-asset-item id="drawing-pen" response-type="arraybuffer" src="./assets/models/DrawingPen.glb"></a-asset-item>
             <a-asset-item id="spawn-point" response-type="arraybuffer" src="./assets/models/spawn-point.glb"></a-asset-item>
 
+            <template id="my-template">
+                <a-entity>
+                    <a-sphere color="#f00"></a-sphere>
+                </a-entity>
+            </template>
+
             <template id="template-waypoint-avatar">
                 <a-entity waypoint></a-entity>
             </template>
@@ -1032,6 +1038,9 @@
                     src: #button"
             ></a-mixin>
         </a-assets>
+
+        <a-entity networked="template:#my-template;attachTemplateToLocal:false">
+        </a-entity>
 
         <!-- HACK - We use this object to trigger initial batch preparation -->
         <a-entity id="batch-prep" visible="false"></a-entity>
