@@ -296,7 +296,6 @@ AFRAME.registerComponent("pen", {
           this.raycaster.ray.origin.copy(cursorPose.position);
           this.raycaster.ray.direction.copy(cursorPose.direction);
         } else if (this.grabberId !== null) {
-          console.log(this.grabberId);
           getLastWorldPosition(this.el.parentEl.object3D, this.raycaster.ray.origin);
           getLastWorldQuaternion(this.el.parentEl.object3D, worldQuaternion);
           this.raycaster.ray.direction.set(0, -1, 0);
