@@ -90,7 +90,8 @@
             <a-asset-item id="spawn-point" response-type="arraybuffer" src="./assets/models/spawn-point.glb"></a-asset-item>
 
             <template id="my-template">
-                <a-entity>
+                <a-entity
+                is-remote-hover-target>
                     <a-box 
                         position="0 -0.5 0"
                         rotation="0 0 0"
@@ -134,7 +135,7 @@
                     <a-entity class="camera" matrix-auto-update>
                         <a-entity class="inspect-pivot" inspect-pivot-offset-from-camera></a-entity>
                         <a-box 
-                        position="0 -1 -3"
+                        position="0 0.5 0"
                         rotation="0 0 0"
                         color="#000"
                         scale="1 1 1"
