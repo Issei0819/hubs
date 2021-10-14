@@ -300,6 +300,7 @@ AFRAME.registerComponent("pen", {
           getLastWorldQuaternion(this.el.parentEl.object3D, worldQuaternion);
           this.raycaster.ray.direction.set(0, -1, 0);
           this.raycaster.ray.direction.applyQuaternion(worldQuaternion);
+          console.log(this)
         }
 
         if (this.grabberId !== null) {
