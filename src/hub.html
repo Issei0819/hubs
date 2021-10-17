@@ -130,7 +130,8 @@
                 </a-entity>
             </template>
             <template id="remote-avatar">
-                <a-entity tags="inspectable: true; preventAudioBoost: true" inspect-pivot-child-selector="selector:.inspect-pivot" networked-avatar ik-root player-info matrix-auto-update visible="false">
+                <a-entity tags="inspectable: true; preventAudioBoost: true" inspect-pivot-child-selector="selector:.inspect-pivot" networked-avatar ik-root player-info matrix-auto-update visible="false"
+                body-helper="type: dynamic; collisionFilterGroup: 15; collisionFilterMask: 15 ; gravity: 0 0 0;">
                     <a-entity class="camera" matrix-auto-update>
                         <a-entity class="inspect-pivot" inspect-pivot-offset-from-camera></a-entity>
                         <a-box 
@@ -634,7 +635,7 @@
             <template id="interactable-pen">
                 <a-entity
                     class="pen interactable"
-                    body-helper="type: dynamic; mass: 0.001; collisionFilterGroup: 1; collisionFilterMask: 4 ; gravity: 0 0 0;"
+                    body-helper="type: dynamic; mass: 0.001; collisionFilterGroup: 1; collisionFilterMask: 15 ; gravity: 0 0 0;"
                     gltf-model-plus="src: #drawing-pen; inflate: true;"
                     owned-object-limiter="counter: #pen-counter"
                     set-unowned-body-kinematic
