@@ -90,13 +90,14 @@
             <a-asset-item id="spawn-point" response-type="arraybuffer" src="./assets/models/spawn-point.glb"></a-asset-item>
 
             <template id="my-template">
-                <a-entity matrix-auto-update>
+                <a-entity class="collidable">
                     <a-box 
                         position="0 -1 -3"
                         rotation="0 0 0"
                         color="#000"
                         scale="1 1 1"
                         visible="true"
+                        class="collidable"
                         >
                     </a-box>
                 </a-entity>
@@ -130,8 +131,7 @@
                 </a-entity>
             </template>
             <template id="remote-avatar">
-                <a-entity tags="inspectable: true; preventAudioBoost: true" inspect-pivot-child-selector="selector:.inspect-pivot" networked-avatar ik-root player-info matrix-auto-update visible="false"
-                body-helper="type: dynamic; collisionFilterGroup: 15; collisionFilterMask: 15 ; gravity: 0 0 0;">
+                <a-entity tags="inspectable: true; preventAudioBoost: true" inspect-pivot-child-selector="selector:.inspect-pivot" networked-avatar ik-root player-info matrix-auto-update visible="false">
                     <a-entity class="camera" matrix-auto-update>
                         <a-entity class="inspect-pivot" inspect-pivot-offset-from-camera></a-entity>
                         <a-box 
@@ -140,6 +140,7 @@
                         color="#000"
                         scale="1 1 1"
                         visible="true"
+                        class="collidable"
                         >
                         </a-box>
                     </a-entity>
