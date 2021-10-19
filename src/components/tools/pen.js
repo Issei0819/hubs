@@ -68,7 +68,7 @@ function almostEquals(epsilon, u, v) {
 
 AFRAME.registerComponent("pen", {
   schema: {
-    drawFrequency: { default: 5 }, //frequency of polling for drawing points
+    drawFrequency: { default: 0.5 }, //frequency of polling for drawing points //Change points. origin:5
     minDistanceBetweenPoints: { default: 0.01 }, //minimum distance to register new drawing point
     camera: { type: "selector" },
     drawingManager: { type: "string" },
@@ -95,7 +95,7 @@ AFRAME.registerComponent("pen", {
     radius: { default: 0.01 }, //drawing geometry radius
     minRadius: { default: 0.005 },
     maxRadius: { default: 0.2 },
-    far: { default: 100 },
+    far: { default: 10 }, //Change points. origin:100
     near: { default: 0.01 },
     drawMode: { default: DRAW_MODE.DEFAULT_3D, oneOf: [DRAW_MODE.DEFAULT_3D, DRAW_MODE.PROJECTION] },
     penVisible: { default: true },
