@@ -68,7 +68,7 @@ function almostEquals(epsilon, u, v) {
 
 AFRAME.registerComponent("pen", {
   schema: {
-    drawFrequency: { default: 0 }, //frequency of polling for drawing points //Change points. origin:5
+    drawFrequency: { default: 5 }, //frequency of polling for drawing points 
 
     minDistanceBetweenPoints: { default: 0.01 }, //minimum distance to register new drawing point 
     camera: { type: "selector" },
