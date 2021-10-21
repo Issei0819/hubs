@@ -469,7 +469,7 @@ AFRAME.registerComponent("networked-drawing", {
 
         this._drawStartCap(this.lastPoint, this.lastSegments, capNormal);
 
-        this.lineStarted = true;
+        this.lineStarted = false; //Change points. origin:true
       } else {
         this._generateSegments(this.currentSegments, position, direction, normal, this.radius * radiusMultiplier);
         this._drawCylinder();
