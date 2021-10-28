@@ -127,7 +127,6 @@
                         scale="1 1 1"
                         visible="true"
                         class="collidable"
-                        id="Me!"
                         >
                         </a-box>
                     </a-entity>
@@ -1365,24 +1364,5 @@
     <div id="ui-root"></div>
     <div id="preload-overlay"></div>
 </body>
-
-<script type="text/javascript">
-    var _init = function () {
-    // collideイベントを登録したい要素を取得する
-    var targetElement = document.getElementById('Me!');
-
-    // collideイベントを登録する
-    targetElement.addEventListener('collide', function (e) {
-        // ボール(id="ball")と衝突した場合のみ処理を行う
-        if (e.detail.body.el.id === 'networked-drawing'){
-        // 衝突したボールと同じ位置にパーティクルを発生させる
-        console.log("hit!!!")
-        };
-    });
-    };
-
-    // DOMのloadが終わってから処理する
-    document.addEventListener('DOMContentLoaded', _init);
-</script>
 
 </html>
