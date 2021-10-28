@@ -134,7 +134,7 @@
                 <a-entity tags="inspectable: true; preventAudioBoost: true" inspect-pivot-child-selector="selector:.inspect-pivot" networked-avatar ik-root player-info matrix-auto-update visible="false">
                     <a-entity class="camera" matrix-auto-update>
                         <a-entity class="inspect-pivot" inspect-pivot-offset-from-camera></a-entity>
-                        <!--<a-box 
+                        <a-box 
                         position="0 -0.5 0"
                         rotation="0 0 0"
                         color="#000"
@@ -142,7 +142,7 @@
                         visible="true"
                         class="collidable"
                         >
-                        </a-box>-->
+                        </a-box>
                     </a-entity>
 
                 
@@ -1231,7 +1231,15 @@
                 set-yxz-order
                 position="0 1.6 0"
             >
-                
+                <a-box 
+                position="0 -0.5 0"
+                rotation="0 0 0"
+                color="#fff"
+                scale="1 2 1"
+                visible="true"
+                class="collidable"
+                >
+                </a-box>
                 <a-entity class="inspect-pivot" inspect-pivot-offset-from-camera></a-entity>
                 <a-entity
                     id="gaze-teleport"
