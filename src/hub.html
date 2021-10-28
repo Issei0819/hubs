@@ -1269,7 +1269,7 @@
             >
             </a-entity>
 
-            <a-entity gltf-model-plus="inflate: true;" class="model">
+            <a-entity gltf-model-plus="inflate: true;" class="model collidable" id="Me!"> <!--Change points-->
                 <template data-name="AvatarRoot">
                     <a-entity
                         ik-controller="alwaysUpdate: true"
@@ -1379,5 +1379,24 @@
     <div id="ui-root"></div>
     <div id="preload-overlay"></div>
 </body>
+
+<script type="text/javascript">
+    var _init = function () {
+    // collideイベントを登録したい要素を取得する
+    var targetElement = document.getElementById('Me!');
+
+    // collideイベントを登録する
+    targetElement.addEventListener('collide', function (e) {
+        // ボール(id="ball")と衝突した場合のみ処理を行う
+        if (e.detail.body.el.id === 'networked-drawing'){
+        // 衝突したボールと同じ位置にパーティクルを発生させる
+        console.log("hit!!!")
+        };
+    });
+    };
+
+    // DOMのloadが終わってから処理する
+    document.addEventListener('DOMContentLoaded', _init);
+</script>
 
 </html>
