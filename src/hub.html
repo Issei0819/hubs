@@ -182,7 +182,18 @@
                 <a-entity tags="inspectable: true; preventAudioBoost: true" inspect-pivot-child-selector="selector:.inspect-pivot" networked-avatar ik-root player-info matrix-auto-update visible="false">
                     <a-entity class="camera" matrix-auto-update>
                         <a-entity class="inspect-pivot" inspect-pivot-offset-from-camera></a-entity>
+                        <a-box 
+                        position="0 -0.5 0"
+                        rotation="0 0 0"
+                        color="#000"
+                        scale="1 1 1"
+                        visible="true"
+                        class="collidable"
+                        >
+                        </a-box>
                     </a-entity>
+
+                
 
                     <a-entity class="left-controller" matrix-auto-update></a-entity>
 
@@ -673,7 +684,7 @@
             <template id="interactable-pen">
                 <a-entity
                     class="pen interactable"
-                    body-helper="type: dynamic; mass: 0.001; collisionFilterGroup: 1; collisionFilterMask: 15; gravity: 0 0 0;"
+                    body-helper="type: dynamic; mass: 0.001; collisionFilterGroup: 1; collisionFilterMask: 15 ; gravity: 0 0 0;"
                     gltf-model-plus="src: #drawing-pen; inflate: true;"
                     owned-object-limiter="counter: #pen-counter"
                     set-unowned-body-kinematic
@@ -1095,6 +1106,7 @@
             ></a-mixin>
         </a-assets>
 
+
         <!-- HACK - We use this object to trigger initial batch preparation -->
         <a-entity id="batch-prep" visible="false"></a-entity>
 
@@ -1304,7 +1316,7 @@
             >
             </a-entity>
 
-            <a-entity gltf-model-plus="inflate: true;" class="model">
+            <a-entity gltf-model-plus="inflate: true;" class="model"> 
                 <template data-name="AvatarRoot">
                     <a-entity
                         ik-controller="alwaysUpdate: true"

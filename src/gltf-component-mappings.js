@@ -150,6 +150,19 @@ AFRAME.GLTFModelPlus.registerComponent("waypoint", "waypoint", (el, componentNam
   el.setAttribute("waypoint", componentData);
 });
 
+AFRAME.GLTFModelPlus.registerComponent("my-template", "my-template", (el, componentName, componentData, components) => {
+  if (componentData.canBeOccupied) {
+    el.setAttribute("networked", {
+      template: "#my-template",
+      attachTemplateToLocal: false,
+      owner: "scene",
+      persistent: true,
+      networkId: components.networked.id
+    });
+  }
+  
+});
+
 AFRAME.GLTFModelPlus.registerComponent("media-frame", "media-frame", (el, componentName, componentData, components) => {
   el.setAttribute("networked", {
     template: "#interactable-media-frame",

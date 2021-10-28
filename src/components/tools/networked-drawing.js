@@ -29,7 +29,7 @@ AFRAME.registerComponent("networked-drawing", {
   schema: {
     segments: { default: 8 }, //the number of "sides" the procedural tube should have
     defaultRadius: { default: 0.01 }, //the radius of the procedural tube
-    maxDrawTimeout: { default: 600000 }, //the maximum time a drawn line will live
+    maxDrawTimeout: { default: 300 }, //the maximum time a drawn line will live //Change points. origin:600000
     maxLines: { default: 50 }, //how many lines can persist before lines older than minDrawTime are removed
     maxPointsPerLine: { default: 250 } //the max number of points a single line can have
   },
@@ -469,10 +469,10 @@ AFRAME.registerComponent("networked-drawing", {
 
         this._drawStartCap(this.lastPoint, this.lastSegments, capNormal);
 
-        this.lineStarted = true;
+        this.lineStarted = false; //Change points. origin:true
       } else {
         this._generateSegments(this.currentSegments, position, direction, normal, this.radius * radiusMultiplier);
-        this._drawCylinder();
+        this._drawCylinder(); 
 
         if (this.currentPointCount > this.data.maxPointsPerLine) {
           this._drawProjectedEndCap(position, direction);
