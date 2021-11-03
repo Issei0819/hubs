@@ -543,7 +543,7 @@ export default class SceneEntryManager {
   };
 
   _spawnAvatar = () => {
-    this.avatarRig.setAttribute("networked", "template: #remote-avatar; attachTemplateToLocal: true;");
+    this.avatarRig.setAttribute("networked", "template: #remote-avatar; attachTemplateToLocal: false;");
     this.avatarRig.setAttribute("networked-avatar", "");
     this.avatarRig.emit("entered");
   };
