@@ -318,11 +318,11 @@
                     class="collidable">
                     </a-entity>
 
-                    <a-entity gltf-model="#aircanon"
+                    <!--<a-entity gltf-model="#aircanon"
                     position="0 0.5 -0.3" 
                     rotation="90 0 0" 
                     scale="0.2 0.2 0.2">
-                    </a-entity>
+                    </a-entity>-->
                     
                 </a-entity>
             </template>
@@ -1195,6 +1195,17 @@
             tags="inspectable: true; preventAudioBoost: true"
             inspect-pivot-child-selector="selector:.inspect-pivot"
         >
+            <a-entity gltf-model="#hanabi"
+            position="0 0 0.9" 
+            rotation="0 0 0" 
+            scale="0.6 0.6 0.6">
+            </a-entity>
+
+            <!--<a-entity gltf-model="#aircanon"
+            position="0 0.5 -0.3" 
+            rotation="90 0 0" 
+            scale="0.2 0.2 0,2">
+            </a-entity>-->
             <a-entity
                 id="player-hud"
                 hud-controller="head: #viewing-camera;"
@@ -1294,17 +1305,7 @@
                 set-yxz-order
                 position="0 1.6 0"
             >
-                <a-entity gltf-model="#hanabi"
-                position="0 0 0.9" 
-                rotation="0 0 0" 
-                scale="0.6 0.6 0.6">
-                </a-entity>
-
-                <a-entity gltf-model="#aircanon"
-                position="0 0.5 -0.3" 
-                rotation="90 0 0" 
-                scale="0.2 0.2 0,2">
-                </a-entity>
+                
                 <a-entity class="inspect-pivot" inspect-pivot-offset-from-camera></a-entity>
                 <a-entity
                     id="gaze-teleport"
