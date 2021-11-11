@@ -226,7 +226,7 @@ AFRAME.registerComponent("pen", {
 
       this._doDraw(intersection, dt);
       
-      console.log(intersection.object.el)
+      console.log(intersection.object)
 
       if (this.penLaserAttributesUpdated) {
         this.penLaserAttributesUpdated = false;
