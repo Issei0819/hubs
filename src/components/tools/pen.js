@@ -70,7 +70,8 @@ function almostEquals(epsilon, u, v) {
 }
 
 
-var messagebox = document.getElementById("chat-input") //Change points
+const messageDispatch = new MessageDispatch(scene, entryManager, hubChannel, remountUI, mediaSearchStore);
+APP.messageDispatch = messageDispatch; //Change points
 
 AFRAME.registerComponent("pen", {
   schema: {
