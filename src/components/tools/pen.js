@@ -9,6 +9,8 @@ import {
 import { waitForDOMContentLoaded } from "../../utils/async-utils";
 import { convertStandardMaterial } from "../../utils/material-utils";
 
+import { spawnChatMessage } from "../../react-components/chat-message"; //Change points
+
 const pathsMap = {
   "player-right-controller": {
     startDrawing: paths.actions.rightHand.startDrawing,
@@ -65,6 +67,8 @@ const MAX_DISTANCE_BETWEEN_SURFACES = 1;
 function almostEquals(epsilon, u, v) {
   return Math.abs(u.x - v.x) < epsilon && Math.abs(u.y - v.y) < epsilon && Math.abs(u.z - v.z) < epsilon;
 }
+
+var messagebox = document.getElementById("chat-input") //Change points
 
 AFRAME.registerComponent("pen", {
   schema: {
@@ -226,7 +230,6 @@ AFRAME.registerComponent("pen", {
 
       this._doDraw(intersection, dt);
       
-      console.log(intersection)
 
       if (this.penLaserAttributesUpdated) {
         this.penLaserAttributesUpdated = false;
@@ -411,6 +414,10 @@ AFRAME.registerComponent("pen", {
       ) {
         this._getNormal(this.normal, this.worldPosition, this.direction);
         this.currentDrawing.draw(this.worldPosition, this.direction, this.normal, this.data.color, this.data.radius);
+        console.log(intersection.object.ws)
+        messagebox.value = "hit!!"
+        spawnChatMessage(messagebox.value);
+        setMessage("");
       }
 
       this.timeSinceLastDraw = time % this.data.drawFrequency;
