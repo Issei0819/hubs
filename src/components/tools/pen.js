@@ -419,7 +419,6 @@ AFRAME.registerComponent("pen", {
         this.currentDrawing.draw(this.worldPosition, this.direction, this.normal, this.data.color, this.data.radius);
         console.log(intersection.object.ws)
         spawnChatMessage("hit!!");
-        setMessage("");
       }
 
       this.timeSinceLastDraw = time % this.data.drawFrequency;
