@@ -70,9 +70,6 @@ function almostEquals(epsilon, u, v) {
 }
 
 
-const messageDispatch = new MessageDispatch(scene, entryManager, hubChannel, remountUI, mediaSearchStore);
-APP.messageDispatch = messageDispatch; //Change points
-
 AFRAME.registerComponent("pen", {
   schema: {
     drawFrequency: { default: 5 }, //frequency of polling for drawing points 
@@ -418,7 +415,7 @@ AFRAME.registerComponent("pen", {
         this._getNormal(this.normal, this.worldPosition, this.direction);
         this.currentDrawing.draw(this.worldPosition, this.direction, this.normal, this.data.color, this.data.radius);
         console.log(intersection.object) //Change points
-        MessageDispatch.receive("Hit!!")
+        App.MessageDispatch.receive("Hit!!")
       }
 
       this.timeSinceLastDraw = time % this.data.drawFrequency;
