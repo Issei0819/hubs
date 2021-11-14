@@ -13,7 +13,7 @@ import { convertStandardMaterial } from "../../utils/material-utils";
 import { spawnChatMessage } from "../../react-components/chat-message"; //Change points
 import { func } from "prop-types";
 
-window.onload = function() {
+window.addEventListener('load', function() {
   
   const pathsMap = {
     "player-right-controller": {
@@ -515,4 +515,4 @@ window.onload = function() {
     }
   });
 
-}
+})
