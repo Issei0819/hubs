@@ -417,7 +417,7 @@ AFRAME.registerComponent("pen", {
         this._getNormal(this.normal, this.worldPosition, this.direction);
         this.currentDrawing.draw(this.worldPosition, this.direction, this.normal, this.data.color, this.data.radius);
         console.log(intersection.object) //Change points
-        MessageDispatch.addToPresenceLog("Hit!!")
+        MessageDispatch.receive("Hit!!")
       }
 
       this.timeSinceLastDraw = time % this.data.drawFrequency;
