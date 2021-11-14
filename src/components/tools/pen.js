@@ -9,7 +9,10 @@ import {
 import { waitForDOMContentLoaded } from "../../utils/async-utils";
 import { convertStandardMaterial } from "../../utils/material-utils";
 
+import { App } from "../../App";
 import MessageDispatch from "../../message-dispatch";
+
+window.APP = new App();
 
 
 const pathsMap = {
