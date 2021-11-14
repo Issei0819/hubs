@@ -9,9 +9,8 @@ import {
 import { waitForDOMContentLoaded } from "../../utils/async-utils";
 import { convertStandardMaterial } from "../../utils/material-utils";
 
+import MessageDispatch from "../../message-dispatch";
 
-import { spawnChatMessage } from "../../react-components/chat-message"; //Change points
-import { func } from "prop-types";
 
 const pathsMap = {
   "player-right-controller": {
@@ -417,8 +416,8 @@ AFRAME.registerComponent("pen", {
       ) {
         this._getNormal(this.normal, this.worldPosition, this.direction);
         this.currentDrawing.draw(this.worldPosition, this.direction, this.normal, this.data.color, this.data.radius);
-        console.log(intersection.object.ws)
-        spawnChatMessage("hit!!");
+        console.log(intersection.object) //Change points
+        MessageDispatch.addToPresenceLog("Hit!!")
       }
 
       this.timeSinceLastDraw = time % this.data.drawFrequency;
