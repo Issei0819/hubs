@@ -77,9 +77,9 @@
             height: 100%;
         }
         #life-frame {
-            margin: 0 auto 0 10px;
+            margin: 20px auto 0 10px;
             width: 40%;
-            background-color: rgba(10, 0, 50, 0.6);
+            background-color: rgba(255, 255, 255, 0.6);
             display: flex;
             padding: 3px 3px;
         }
@@ -106,6 +106,8 @@
             display: flex;
             justify-content: space-around;
         }
+
+        @import "https://use.fontawesome.com/releases/v5.13.0/css/all.css";
 
         *,
         *:before,
@@ -194,12 +196,15 @@
         a.btn-c:hover:before {
             left: 2rem;
         }
+        .none {
+            display: none;
+        }
     </style>
         
     <div id="Player-UI"
             style="width: 100vw; height: 100vh; z-index: 1000;pointer-events: none;position: fixed;top: 0;left: 0;"
         >
-        <div id="Player_map" style="width: 200px;height: 200px;background-color: transparent;border: 5px solid #00e1ff63;position: absolute;top: 10px;right: 10px;">
+        <div id="Player_map" style="width: 200px;height: 200px;background-color: transparent;border: 5px solid #00e1ff63;position: absolute;top: 10px;right: 1o0px;">
             <img src="./assets/minimap.jpg" alt="">
         </div>
         <div id="life-frame">
@@ -207,7 +212,7 @@
             <div id="life-mark"></div>
         </div>
         <div class="btn-wrap">
-            <a href="" class="btn btn-c" style="position: fixed;bottom: 0;left: 10px;">
+            <a href="" class="btn btn-c" style="position: fixed;bottom: 100px;left: 10px;">
               <span>シューティングゲームをプレイ！</span>
               <br>ゲームワールドへ移動する<i class="fas fa-angle-double-right"></i>
             
@@ -282,6 +287,11 @@
 
             lifeBar.style.width = life + "%"
         }
+        });
+
+        var menu_toggle = document.getElementById("menu")
+        menu_toggle.addEventListener('click', function(){
+            this.classList.toggle('none');
         });
     </script>
 
