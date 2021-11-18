@@ -50,7 +50,7 @@ var Player_Respawn = document.getElementById("Player-Respawn");
         }
         });
     
-        var menu_toggle = document.getElementById("menu")
-        menu_toggle.addEventListener('click', function(){
-            this.classList.toggle('none');
-        });
+        //var menu_toggle = document.getElementById("menu")
+        //menu_toggle.addEventListener('click', function(){
+            //this.classList.toggle('none');
+        //});
