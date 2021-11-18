@@ -1,3 +1,5 @@
+'use strict';
+
 var Player_Respawn = document.getElementById("Player-Respawn");
         Player_Respawn.style.display = "none";
         function respawn() {
