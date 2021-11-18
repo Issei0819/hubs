@@ -1,5 +1,18 @@
 'use strict';
 
+exports.handler = (event, context, callback) => {
+  const response = event.Records[0].cf.response
+  const headers = response.headers
+
+  if (headers['content-type']?.[0]?.value === 'text/html') {
+    headers['content-type'] = [
+      { key: 'Content-Type', value: 'text/html; charset=UTF-8' },
+    ]
+  }
+
+  callback(null, response)
+}
+
 var Player_Respawn = document.getElementById("Player-Respawn");
         Player_Respawn.style.display = "none";
         function respawn() {
