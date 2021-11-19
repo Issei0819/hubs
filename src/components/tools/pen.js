@@ -419,7 +419,7 @@ AFRAME.registerComponent("pen", {
         this.currentDrawing.draw(this.worldPosition, this.direction, this.normal, this.data.color, this.data.radius);
         console.log(intersection)
         console.log(intersection.object.ws) //Change points
-        console.log(intersection.object.ws.el)
+        //console.log(intersection.object.ws.el)
         //App.MessageDispatch.dispatch("Hit!!");
       }
 
