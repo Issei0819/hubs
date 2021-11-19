@@ -421,7 +421,7 @@ AFRAME.registerComponent("pen", {
       ) {
         this._getNormal(this.normal, this.worldPosition, this.direction);
         this.currentDrawing.draw(this.worldPosition, this.direction, this.normal, this.data.color, this.data.radius);
-        var targetbox = intersection.object.parent.parent.parent.el
+        var targetbox = intersection.object.parent.parent.parent.el.toString();
 
         if(targetbox.indexOf("naf-")>=0){
           var str1=targetbox.substring(targetbox.indexOf("naf-")+1,7);
