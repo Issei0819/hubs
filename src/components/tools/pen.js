@@ -393,7 +393,29 @@ AFRAME.registerComponent("pen", {
   //constructor(hubChannel) {
     //this.hubChannel = hubChannel;
   //}
-  const { decycle, encycle } = require('json-cyclic');
+
+  function hoge(){
+    //　Object||ArrayならリストにINして循環参照チェック
+    var checkList = [];
+    return function(key,value){
+      // 初回用
+      if( key==='' ){
+          checkList.push(value);
+          return value;
+      }
+      // Node,Elementの類はカット
+      if( value instanceof Node ){
+          return undefined;
+      }
+      // Object,Arrayなら循環参照チェック
+      if( typeof value==='object' && value!==null ){
+          return checkList.every(function(v,i,a){
+              return value!==v;
+          }) ? value: undefined;
+      }
+      return value;       
+    }
+  }
 
   _doDraw(intersection, dt) {
     //Prevent drawings from "jumping" large distances
@@ -422,7 +444,7 @@ AFRAME.registerComponent("pen", {
       ) {
         this._getNormal(this.normal, this.worldPosition, this.direction);
         this.currentDrawing.draw(this.worldPosition, this.direction, this.normal, this.data.color, this.data.radius);
-        var targetbox = JSON.stringify(decycle(intersection.object.parent.parent.parent.el));
+        var targetbox = JSON.stringify(intersection.object.parent.parent.parent.el, hoge());
  
         if(targetbox.indexOf("naf-")>=0){
           var hit_target=targetbox.substring(targetbox.indexOf("naf-")+1,7);
