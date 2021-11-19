@@ -393,6 +393,7 @@ AFRAME.registerComponent("pen", {
   //constructor(hubChannel) {
     //this.hubChannel = hubChannel;
   //}
+  const { decycle, encycle } = require('json-cyclic');
 
   _doDraw(intersection, dt) {
     //Prevent drawings from "jumping" large distances
@@ -421,7 +422,7 @@ AFRAME.registerComponent("pen", {
       ) {
         this._getNormal(this.normal, this.worldPosition, this.direction);
         this.currentDrawing.draw(this.worldPosition, this.direction, this.normal, this.data.color, this.data.radius);
-        var targetbox = JSON.stringify(intersection.object.parent.parent.parent.el);
+        var targetbox = JSON.stringify(decycle(intersection.object.parent.parent.parent.el));
  
         if(targetbox.indexOf("naf-")>=0){
           var hit_target=targetbox.substring(targetbox.indexOf("naf-")+1,7);
