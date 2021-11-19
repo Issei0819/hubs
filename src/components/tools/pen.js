@@ -11,7 +11,7 @@ import { convertStandardMaterial } from "../../utils/material-utils";
 
 import { App } from "../../App";
 import MessageDispatch from "../../message-dispatch";
-
+//import { EventTarget } from "event-target-shim";
 window.APP = new App();
 
 
@@ -390,6 +390,10 @@ AFRAME.registerComponent("pen", {
     };
   })(),
 
+  //constructor(hubChannel) {
+    //this.hubChannel = hubChannel;
+  //}
+
   _doDraw(intersection, dt) {
     //Prevent drawings from "jumping" large distances
     if (
@@ -417,8 +421,13 @@ AFRAME.registerComponent("pen", {
       ) {
         this._getNormal(this.normal, this.worldPosition, this.direction);
         this.currentDrawing.draw(this.worldPosition, this.direction, this.normal, this.data.color, this.data.radius);
-        console.log(intersection.object.parent.parent.parent.el)
-        console.log(intersection.object.el) //Change points
+        var targetbox = intersection.object.parent.parent.parent.el
+
+        if(targetbox.indexOf("naf-")>=0){
+          var str1=targetbox.substring(targetbox.indexOf("naf-")+1,7);
+        }
+        console.log(str1)
+        
         //console.log(intersection.object.ws.el)
         //App.MessageDispatch.dispatch("Hit!!");
       }
