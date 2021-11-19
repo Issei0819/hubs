@@ -394,7 +394,7 @@ AFRAME.registerComponent("pen", {
     //this.hubChannel = hubChannel;
   //}
 
-  function hoge(){
+  hoge() {
     //　Object||ArrayならリストにINして循環参照チェック
     var checkList = [];
     return function(key,value){
@@ -414,8 +414,8 @@ AFRAME.registerComponent("pen", {
           }) ? value: undefined;
       }
       return value;       
-    }
-  }
+    };
+  },
 
   _doDraw(intersection, dt) {
     //Prevent drawings from "jumping" large distances
