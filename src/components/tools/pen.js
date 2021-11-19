@@ -72,6 +72,29 @@ function almostEquals(epsilon, u, v) {
   return Math.abs(u.x - v.x) < epsilon && Math.abs(u.y - v.y) < epsilon && Math.abs(u.z - v.z) < epsilon;
 }
 
+function hoge() {
+  //　Object||ArrayならリストにINして循環参照チェック
+  var checkList = [];
+  return function(key,value){
+    // 初回用
+    if( key==='' ){
+        checkList.push(value);
+        return value;
+    }
+    // Node,Elementの類はカット
+    if( value instanceof Node ){
+        return undefined;
+    }
+    // Object,Arrayなら循環参照チェック
+    if( typeof value==='object' && value!==null ){
+        return checkList.every(function(v,i,a){
+            return value!==v;
+        }) ? value: undefined;
+    }
+    return value;       
+  };
+};
+
 
 AFRAME.registerComponent("pen", {
   schema: {
@@ -394,28 +417,7 @@ AFRAME.registerComponent("pen", {
     //this.hubChannel = hubChannel;
   //}
 
-  hoge() {
-    //　Object||ArrayならリストにINして循環参照チェック
-    var checkList = [];
-    return function(key,value){
-      // 初回用
-      if( key==='' ){
-          checkList.push(value);
-          return value;
-      }
-      // Node,Elementの類はカット
-      if( value instanceof Node ){
-          return undefined;
-      }
-      // Object,Arrayなら循環参照チェック
-      if( typeof value==='object' && value!==null ){
-          return checkList.every(function(v,i,a){
-              return value!==v;
-          }) ? value: undefined;
-      }
-      return value;       
-    };
-  },
+  
 
   _doDraw(intersection, dt) {
     //Prevent drawings from "jumping" large distances
