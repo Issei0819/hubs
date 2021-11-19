@@ -421,12 +421,12 @@ AFRAME.registerComponent("pen", {
       ) {
         this._getNormal(this.normal, this.worldPosition, this.direction);
         this.currentDrawing.draw(this.worldPosition, this.direction, this.normal, this.data.color, this.data.radius);
-        var targetbox = intersection.object.parent.parent.parent.el.toString();
+        var targetbox = intersection.object.parent.parent.parent.el;
 
-        if(targetbox.indexOf("naf-")>=0){
-          var str1=targetbox.substring(targetbox.indexOf("naf-")+1,7);
-        }
-        console.log(str1)
+        //if(targetbox.indexOf("naf-")>=0){
+          //var str1=targetbox.substring(targetbox.indexOf("naf-")+1,7);
+        //}
+        console.log(typeof(targetbox));
         
         //console.log(intersection.object.ws.el)
         //App.MessageDispatch.dispatch("Hit!!");
