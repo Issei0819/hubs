@@ -9,9 +9,11 @@ import {
 import { waitForDOMContentLoaded } from "../../utils/async-utils";
 import { convertStandardMaterial } from "../../utils/material-utils";
 
-import { sendMessage } from "../../react-components/room/ChatSidebarContainer";
-
+import { App } from "../../App";
+import MessageDispatch from "../../message-dispatch";
+//import { EventTarget } from "event-target-shim";
 window.APP = new App();
+
 
 const pathsMap = {
   "player-right-controller": {
@@ -69,6 +71,30 @@ const MAX_DISTANCE_BETWEEN_SURFACES = 1;
 function almostEquals(epsilon, u, v) {
   return Math.abs(u.x - v.x) < epsilon && Math.abs(u.y - v.y) < epsilon && Math.abs(u.z - v.z) < epsilon;
 }
+
+function hoge() {
+  //　Object||ArrayならリストにINして循環参照チェック
+  var checkList = [];
+  return function(key,value){
+    // 初回用
+    if( key==='' ){
+        checkList.push(value);
+        return value;
+    }
+    // Node,Elementの類はカット
+    if( value instanceof Node ){
+        return undefined;
+    }
+    // Object,Arrayなら循環参照チェック
+    if( typeof value==='object' && value!==null ){
+        return checkList.every(function(v,i,a){
+            return value!==v;
+        }) ? value: undefined;
+    }
+    return value;       
+  };
+};
+
 
 AFRAME.registerComponent("pen", {
   schema: {
@@ -387,6 +413,12 @@ AFRAME.registerComponent("pen", {
     };
   })(),
 
+  //constructor(hubChannel) {
+    //this.hubChannel = hubChannel;
+  //}
+
+  
+
   _doDraw(intersection, dt) {
     //Prevent drawings from "jumping" large distances
     if (
@@ -419,10 +451,11 @@ AFRAME.registerComponent("pen", {
         var targetbox = Object.entries(intersection.object.parent.parent.parent.el);
 
         if (targetbox[5][1].indexOf("networked") != -1) {
-          var hit_message = "Hits naf-" + targetbox[5][1].networked.attrValue.networkId;
+          console.log("naf-" + targetbox[5][1].networked.attrValue.networkId);
         };
         
-        this.hubChannel.sendMessage(hit_message);
+
+        //App.MessageDispatch.dispatch("Hit!!");
       }
 
       this.timeSinceLastDraw = time % this.data.drawFrequency;
