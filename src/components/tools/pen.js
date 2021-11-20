@@ -449,7 +449,9 @@ AFRAME.registerComponent("pen", {
         //var targetbox = JSON.stringify(intersection.object.parent.parent.parent.el, hoge());
         
         var targetbox = Object.entries(intersection.object.parent.parent.parent.el);
-        console.log(targetbox)
+        console.log(targetbox[5][1])
+        console.log(targetbox[5][1].networked.attrValue.networkId)
+        console.log(targetbox[5][1].networked.attrValue.networkId.indexOf("networked"))
         //if (targetbox.components.e.indexOf("networked") != -1) {
           //console.log("naf-" + targetbox[5][1].networked.attrValue.networkId);
         //};
