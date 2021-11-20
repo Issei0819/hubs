@@ -11,6 +11,8 @@ import { convertStandardMaterial } from "../../utils/material-utils";
 
 import { sendMessage } from "../../react-components/room/ChatSidebarContainer";
 
+window.APP = new App();
+
 const pathsMap = {
   "player-right-controller": {
     startDrawing: paths.actions.rightHand.startDrawing,
