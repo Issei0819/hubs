@@ -449,12 +449,10 @@ AFRAME.registerComponent("pen", {
         //var targetbox = JSON.stringify(intersection.object.parent.parent.parent.el, hoge());
         
         var targetbox = Object.entries(intersection.object.parent.parent.parent.el);
-        console.log(targetbox[5][1])
-        console.log(targetbox[5][1].networked.attrValue.networkId)
-        console.log(targetbox[5][1].indexOf("networked"))
-        //if (targetbox.components.e.indexOf("networked") != -1) {
-          //console.log("naf-" + targetbox[5][1].networked.attrValue.networkId);
-        //};
+        
+        if (targetbox[5][1].networked.attrValue.template = "#remote-avatar") {
+          console.log("naf-" + targetbox[5][1].networked.attrValue.networkId);
+        };
         
 
         //App.MessageDispatch.dispatch("Hit!!");
