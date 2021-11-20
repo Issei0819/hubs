@@ -450,8 +450,9 @@ AFRAME.registerComponent("pen", {
         
         var targetbox = Object.entries(intersection.object.parent.parent.parent.el);
         console.log(targetbox[5][1])
-        if (targetbox[5][1].networked.attrValue.template = "#remote-avatar") {
-          console.log("naf-" + targetbox[5][1].networked.attrValue.networkId);
+        if (targetbox[5][1].networked) {
+          var hit_target = "Hits naf-" + targetbox[5][1].networked.attrValue.networkId
+          console.log(hit_target);
         };
         
 
