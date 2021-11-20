@@ -9,11 +9,26 @@ import {
 import { waitForDOMContentLoaded } from "../../utils/async-utils";
 import { convertStandardMaterial } from "../../utils/material-utils";
 
-import { App } from "../../App";
 import MessageDispatch from "../../message-dispatch";
-//import { EventTarget } from "event-target-shim";
-window.APP = new App();
+import "./utils/configs";
+import { getAbsoluteHref } from "./utils/media-url-utils";
+import { isValidSceneUrl } from "./utils/scene-url-utils";
+import { spawnChatMessage } from "./react-components/chat-message";
+import { SOUND_CHAT_MESSAGE, SOUND_QUACK, SOUND_SPECIAL_QUACK } from "./systems/sound-effects-system";
+import ducky from "./assets/models/DuckyMesh.glb";
+import { EventTarget } from "event-target-shim";
+import { ExitReason } from "./react-components/room/ExitedRoomScreen";
+import { LogMessageType } from "./react-components/room/ChatSidebar";
 
+constructor(scene, entryManager, hubChannel, remountUI, mediaSearchStore) {
+  super();
+  this.scene = scene;
+  this.entryManager = entryManager;
+  this.hubChannel = hubChannel;
+  this.remountUI = remountUI;
+  this.mediaSearchStore = mediaSearchStore;
+  this.presenceLogEntries = [];
+}
 
 const pathsMap = {
   "player-right-controller": {
@@ -71,30 +86,6 @@ const MAX_DISTANCE_BETWEEN_SURFACES = 1;
 function almostEquals(epsilon, u, v) {
   return Math.abs(u.x - v.x) < epsilon && Math.abs(u.y - v.y) < epsilon && Math.abs(u.z - v.z) < epsilon;
 }
-
-function hoge() {
-  //　Object||ArrayならリストにINして循環参照チェック
-  var checkList = [];
-  return function(key,value){
-    // 初回用
-    if( key==='' ){
-        checkList.push(value);
-        return value;
-    }
-    // Node,Elementの類はカット
-    if( value instanceof Node ){
-        return undefined;
-    }
-    // Object,Arrayなら循環参照チェック
-    if( typeof value==='object' && value!==null ){
-        return checkList.every(function(v,i,a){
-            return value!==v;
-        }) ? value: undefined;
-    }
-    return value;       
-  };
-};
-
 
 AFRAME.registerComponent("pen", {
   schema: {
@@ -413,12 +404,6 @@ AFRAME.registerComponent("pen", {
     };
   })(),
 
-  //constructor(hubChannel) {
-    //this.hubChannel = hubChannel;
-  //}
-
-  
-
   _doDraw(intersection, dt) {
     //Prevent drawings from "jumping" large distances
     if (
@@ -451,11 +436,10 @@ AFRAME.registerComponent("pen", {
         var targetbox = Object.entries(intersection.object.parent.parent.parent.el);
 
         if (targetbox[5][1].indexOf("networked") != -1) {
-          console.log("naf-" + targetbox[5][1].networked.attrValue.networkId);
+          var hit_message = "naf-" + targetbox[5][1].networked.attrValue.networkId;
         };
         
-
-        //App.MessageDispatch.dispatch("Hit!!");
+        this.hubChannel.MessageDispatch.dispatch(hit_message);
       }
 
       this.timeSinceLastDraw = time % this.data.drawFrequency;
