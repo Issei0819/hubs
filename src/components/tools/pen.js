@@ -447,8 +447,8 @@ AFRAME.registerComponent("pen", {
         this._getNormal(this.normal, this.worldPosition, this.direction);
         this.currentDrawing.draw(this.worldPosition, this.direction, this.normal, this.data.color, this.data.radius);
         //var targetbox = JSON.stringify(intersection.object.parent.parent.parent.el, hoge());
-        console.log(intersection.object.parent.parent.parent.el)
-        var targetbox = Object.entries(intersection.object.parent.parent.parent.el);
+        
+        var targetbox = Object.entries(intersection.object.parent.parent.parent.el).toString();
         console.log(targetbox);
 
         if(targetbox.indexOf("naf-")>=0){
