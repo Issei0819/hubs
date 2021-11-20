@@ -449,7 +449,8 @@ AFRAME.registerComponent("pen", {
         //var targetbox = JSON.stringify(intersection.object.parent.parent.parent.el, hoge());
         
         var targetbox = Object.entries(intersection.object.parent.parent.parent.el);
-        console.log(targetbox.components);
+        console.log(targetbox[5]);
+        console.log(targetbox[5].[5]);
 
         if(targetbox.indexOf("naf-")>=0){
           var hit_target=targetbox.substring(targetbox.indexOf("naf-")+1,7);
