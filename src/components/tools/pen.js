@@ -450,10 +450,10 @@ AFRAME.registerComponent("pen", {
         console.log(intersection.object)
         var targetbox = Object.entries(intersection.object.parent.parent.parent.el);
 
-        if (targetbox[5][1].index("networked") != -1) {
+        if (targetbox[5][1].indexOf("networked") != -1) {
           console.log("naf-" + targetbox[5][1].networked.attrValue.networkId);
         };
-          
+        
 
         //App.MessageDispatch.dispatch("Hit!!");
       }
