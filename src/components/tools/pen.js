@@ -9,18 +9,7 @@ import {
 import { waitForDOMContentLoaded } from "../../utils/async-utils";
 import { convertStandardMaterial } from "../../utils/material-utils";
 
-import MessageDispatch from "../../message-dispatch";
-import "./utils/configs";
-import { getAbsoluteHref } from "./utils/media-url-utils";
-import { isValidSceneUrl } from "./utils/scene-url-utils";
-import { spawnChatMessage } from "./react-components/chat-message";
-import { SOUND_CHAT_MESSAGE, SOUND_QUACK, SOUND_SPECIAL_QUACK } from "./systems/sound-effects-system";
-import ducky from "./assets/models/DuckyMesh.glb";
-import { EventTarget } from "event-target-shim";
-import { ExitReason } from "./react-components/room/ExitedRoomScreen";
-import { LogMessageType } from "./react-components/room/ChatSidebar";
-
-
+import { sendMessage } from "../../react-components/room/ChatSidebarContainer";
 
 const pathsMap = {
   "player-right-controller": {
@@ -428,10 +417,10 @@ AFRAME.registerComponent("pen", {
         var targetbox = Object.entries(intersection.object.parent.parent.parent.el);
 
         if (targetbox[5][1].indexOf("networked") != -1) {
-          var hit_message = "naf-" + targetbox[5][1].networked.attrValue.networkId;
+          var hit_message = "Hits naf-" + targetbox[5][1].networked.attrValue.networkId;
         };
         
-        this.hubChannel.MessageDispatch.dispatch(hit_message);
+        this.hubChannel.sendMessage(hit_message);
       }
 
       this.timeSinceLastDraw = time % this.data.drawFrequency;
