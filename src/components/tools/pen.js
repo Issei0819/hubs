@@ -20,15 +20,7 @@ import { EventTarget } from "event-target-shim";
 import { ExitReason } from "./react-components/room/ExitedRoomScreen";
 import { LogMessageType } from "./react-components/room/ChatSidebar";
 
-constructor(scene, entryManager, hubChannel, remountUI, mediaSearchStore) {
-  super();
-  this.scene = scene;
-  this.entryManager = entryManager;
-  this.hubChannel = hubChannel;
-  this.remountUI = remountUI;
-  this.mediaSearchStore = mediaSearchStore;
-  this.presenceLogEntries = [];
-}
+
 
 const pathsMap = {
   "player-right-controller": {
