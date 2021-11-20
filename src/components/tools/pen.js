@@ -449,13 +449,12 @@ AFRAME.registerComponent("pen", {
         //var targetbox = JSON.stringify(intersection.object.parent.parent.parent.el, hoge());
         
         var targetbox = Object.entries(intersection.object.parent.parent.parent.el);
-        console.log(targetbox[5]);
-        console.log(targetbox[5][5]);
+        console.log("naf-" + targetbox[5][1].networked.attrValue.networkId);
 
-        if(targetbox.indexOf("naf-")>=0){
-          var hit_target=targetbox.substring(targetbox.indexOf("naf-")+1,7);
-        }
-        console.log(hit_target);
+        //if(targetbox.indexOf("naf-")>=0){
+          //var hit_target=targetbox.substring(targetbox.indexOf("naf-")+1,7);
+        //}
+        //console.log(hit_target);
         
         //console.log(intersection.object.ws.el)
         //App.MessageDispatch.dispatch("Hit!!");
