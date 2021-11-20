@@ -447,12 +447,12 @@ AFRAME.registerComponent("pen", {
         this._getNormal(this.normal, this.worldPosition, this.direction);
         this.currentDrawing.draw(this.worldPosition, this.direction, this.normal, this.data.color, this.data.radius);
         //var targetbox = JSON.stringify(intersection.object.parent.parent.parent.el, hoge());
-        console.log(intersection.object)
+        
         var targetbox = Object.entries(intersection.object.parent.parent.parent.el);
-
-        if (targetbox[5][1].indexOf("networked") != -1) {
-          console.log("naf-" + targetbox[5][1].networked.attrValue.networkId);
-        };
+        console.log(targetbox)
+        //if (targetbox.components.e.indexOf("networked") != -1) {
+          //console.log("naf-" + targetbox[5][1].networked.attrValue.networkId);
+        //};
         
 
         //App.MessageDispatch.dispatch("Hit!!");
