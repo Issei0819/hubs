@@ -25,7 +25,7 @@ import hubchannel from "../../utils/hub-channel"
 const hubId = getCurrentHubId();
 const store = window.APP.store;
 
-const hubChannel = new HubChannel(store, hubId);
+const hubChannel = new hubChannel(store, hubId);
 window.APP.hubChannel = hubChannel;
 
 const pathsMap = {
