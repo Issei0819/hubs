@@ -74,10 +74,6 @@ function almostEquals(epsilon, u, v) {
   return Math.abs(u.x - v.x) < epsilon && Math.abs(u.y - v.y) < epsilon && Math.abs(u.z - v.z) < epsilon;
 };
 
-constructor(hubChannel) {
-  this.hubChannel = hubChannel;
-};
-
 
 AFRAME.registerComponent("pen", {
   schema: {
