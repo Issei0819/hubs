@@ -57,6 +57,8 @@ export default class SceneEntryManager {
     console.log("Entering scene...");
     document.getElementById("viewing-camera").removeAttribute("scene-preview-camera");
 
+    console.log(NAF)
+
     if (isDebug && NAF.connection.adapter.session) {
       NAF.connection.adapter.session.options.verbose = true;
     }
