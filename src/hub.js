@@ -1431,5 +1431,13 @@ document.addEventListener("DOMContentLoaded", async () => {
       //this.classList.toggle('none');
   //});
 
+  document.addEventListener('keydown', event => {
+    if (event.ctrlKey && event.code === 'Enter') {
+      var hit_target = document.getElementById("hit_target_container").ariaValueMax;
+      console.log(hit_target);
+
+      hubChannel.sendMessage(hit_target);
+    }
+  });
   
 });
