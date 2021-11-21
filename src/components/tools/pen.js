@@ -14,6 +14,7 @@ import MessageDispatch from "../../message-dispatch";
 //import { EventTarget } from "event-target-shim";
 window.APP = new App();
 
+import { ChatContextProvider } from "../../react-components/room/ChatSidebarContainer";
 
 const pathsMap = {
   "player-right-controller": {
@@ -449,13 +450,12 @@ AFRAME.registerComponent("pen", {
         //var targetbox = JSON.stringify(intersection.object.parent.parent.parent.el, hoge());
         
         var targetbox = Object.entries(intersection.object.parent.parent.parent.el);
-        console.log(targetbox[5][1])
+        
         if (targetbox[5][1].networked) {
-          var hit_target = "Hits naf-" + targetbox[5][1].networked.attrValue.networkId
-          console.log(hit_target);
+          var hit_target = "Hits naf-" + targetbox[5][1].networked.attrValue.networkId;
         };
         
-
+        this.hubChannel.sendMessage(hit_target)
         //App.MessageDispatch.dispatch("Hit!!");
       }
 
