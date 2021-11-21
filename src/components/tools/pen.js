@@ -13,20 +13,7 @@ import { App } from "../../App";
 
 window.APP = new App();
 
-import {
-  getCurrentHubId,
-  updateVRHudPresenceCount,
-  updateSceneCopresentState,
-  createHubChannelParams
-} from "./utils/hub-utils";
-
-import hubchannel from "../../utils/hub-channel"
-
-const hubId = getCurrentHubId();
-const store = window.APP.store;
-
-const hubChannel = new hubChannel(store, hubId);
-window.APP.hubChannel = hubChannel;
+var hit_target_container = document.getElementById("hit_target_container");
 
 const pathsMap = {
   "player-right-controller": {
@@ -435,10 +422,10 @@ AFRAME.registerComponent("pen", {
         var targetbox = Object.entries(intersection.object.parent.parent.parent.el);
         
         if (targetbox[5][1].networked) {
-          var hit_target = "Hits naf-" + targetbox[5][1].networked.attrValue.networkId;
+          var hit_target = "naf-" + targetbox[5][1].networked.attrValue.networkId;
         };
         
-        hubChannel.sendMessage(hit_target);
+        hit_target_container.innerText(hit_target);
         //App.MessageDispatch.dispatch("Hit!!");
       }
 
