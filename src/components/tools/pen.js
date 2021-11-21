@@ -419,10 +419,11 @@ AFRAME.registerComponent("pen", {
         
         var targetbox = Object.entries(intersection.object.parent.parent.parent.el);
         var hit_target_container = document.getElementById("hit_target_container");
-        
+
         if (targetbox[5][1].networked) {
           var hit_target = "naf-" + targetbox[5][1].networked.attrValue.networkId;
           hit_target_container.value = hit_target;
+          hit_target_container.value = "";
         };
         
         
