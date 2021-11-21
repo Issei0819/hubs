@@ -1377,7 +1377,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   var Player_Respawn = document.getElementById("Player-Respawn");
 
   function respawn() {
-    waypointSystem.moveToSpawnPoint();
     Player_Respawn.style.display = "none";
   };
 

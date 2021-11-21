@@ -58,8 +58,8 @@ export default class SceneEntryManager {
     document.getElementById("viewing-camera").removeAttribute("scene-preview-camera");
 
     console.log(NAF.connection.entities.entities);
-    console.log(NAF.connection.entities.entities[0]);
-    console.log(typeof NAF.connection.entities.entities[0]);
+    console.log(Object.keys(NAF.connection.entities.entities));
+    console.log(Object.keys(NAF.connection.entities.entities)[0]);
     console.log(NAF.connection.entities);
 
     if (isDebug && NAF.connection.adapter.session) {
