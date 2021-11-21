@@ -10,12 +10,22 @@ import { waitForDOMContentLoaded } from "../../utils/async-utils";
 import { convertStandardMaterial } from "../../utils/material-utils";
 
 import { App } from "../../App";
-import MessageDispatch from "../../message-dispatch";
-//import { EventTarget } from "event-target-shim";
+
 window.APP = new App();
 
-import { hubchannel } from "../../utils/hub-channel"
-import { ChatContextProvider } from "../../react-components/room/ChatSidebarContainer";
+import {
+  getCurrentHubId,
+  updateVRHudPresenceCount,
+  updateSceneCopresentState,
+  createHubChannelParams
+} from "./utils/hub-utils";
+
+import hubchannel from "../../utils/hub-channel"
+
+const hubId = getCurrentHubId();
+const store = window.APP.store;
+
+const hubChannel = new HubChannel(store, hubId);
 
 const pathsMap = {
   "player-right-controller": {
@@ -427,7 +437,7 @@ AFRAME.registerComponent("pen", {
           var hit_target = "Hits naf-" + targetbox[5][1].networked.attrValue.networkId;
         };
         
-        this.hubChannel.sendMessage(hit_target);
+        hubChannel.sendMessage(hit_target);
         //App.MessageDispatch.dispatch("Hit!!");
       }
 
