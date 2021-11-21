@@ -26,6 +26,7 @@ const hubId = getCurrentHubId();
 const store = window.APP.store;
 
 const hubChannel = new HubChannel(store, hubId);
+window.APP.hubChannel = hubChannel;
 
 const pathsMap = {
   "player-right-controller": {
