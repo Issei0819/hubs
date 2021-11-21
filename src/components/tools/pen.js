@@ -14,6 +14,7 @@ import MessageDispatch from "../../message-dispatch";
 //import { EventTarget } from "event-target-shim";
 window.APP = new App();
 
+import { hubchannel } from "../../utils/hub-channel"
 import { ChatContextProvider } from "../../react-components/room/ChatSidebarContainer";
 
 const pathsMap = {
@@ -71,29 +72,10 @@ const MAX_DISTANCE_BETWEEN_SURFACES = 1;
 
 function almostEquals(epsilon, u, v) {
   return Math.abs(u.x - v.x) < epsilon && Math.abs(u.y - v.y) < epsilon && Math.abs(u.z - v.z) < epsilon;
-}
+};
 
-function hoge() {
-  //　Object||ArrayならリストにINして循環参照チェック
-  var checkList = [];
-  return function(key,value){
-    // 初回用
-    if( key==='' ){
-        checkList.push(value);
-        return value;
-    }
-    // Node,Elementの類はカット
-    if( value instanceof Node ){
-        return undefined;
-    }
-    // Object,Arrayなら循環参照チェック
-    if( typeof value==='object' && value!==null ){
-        return checkList.every(function(v,i,a){
-            return value!==v;
-        }) ? value: undefined;
-    }
-    return value;       
-  };
+constructor(hubChannel) {
+  this.hubChannel = hubChannel;
 };
 
 
@@ -414,12 +396,6 @@ AFRAME.registerComponent("pen", {
     };
   })(),
 
-  //constructor(hubChannel) {
-    //this.hubChannel = hubChannel;
-  //}
-
-  
-
   _doDraw(intersection, dt) {
     //Prevent drawings from "jumping" large distances
     if (
@@ -455,7 +431,7 @@ AFRAME.registerComponent("pen", {
           var hit_target = "Hits naf-" + targetbox[5][1].networked.attrValue.networkId;
         };
         
-        this.hubChannel.sendMessage(hit_target)
+        this.hubChannel.sendMessage(hit_target);
         //App.MessageDispatch.dispatch("Hit!!");
       }
 
