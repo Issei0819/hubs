@@ -1430,4 +1430,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   //menu_toggle.addEventListener('click', function(){
       //this.classList.toggle('none');
   //});
-  });
+
+  
+});
