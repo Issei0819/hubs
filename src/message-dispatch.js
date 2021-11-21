@@ -24,12 +24,9 @@ export default class MessageDispatch extends EventTarget {
   addToPresenceLog(entry) {
     entry.key = Date.now().toString();
 
-    //if (entry.type ==="chat" && entry.indexOf("naf") = 0){
-      //console.log(entry);
-    //};
-
-    console.log(entry)
-    console.log(typeof entry)
+    if (entry.type ==="chat" && entry.body.indexOf("naf") = 0){
+      console.log(entry.body);
+    };
 
     this.presenceLogEntries.push(entry);
     this.remountUI({ presenceLogEntries: this.presenceLogEntries });
