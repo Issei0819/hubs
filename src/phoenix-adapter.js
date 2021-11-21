@@ -66,6 +66,7 @@ export default class PhoenixAdapter {
   }
   async connect() {
     this.refs.set("naf", this.hubChannel.channel.on("naf", this.handleIncomingNAF));
+    console.log(this.handleIncomingNAF)
     this.refs.set("nafr", this.hubChannel.channel.on("nafr", this.handleIncomingNAFR));
 
     this.nafConnectSuccess(this.session_id);

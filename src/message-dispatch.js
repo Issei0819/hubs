@@ -26,6 +26,7 @@ export default class MessageDispatch extends EventTarget {
 
     if (entry.type ==="chat" && entry.body.indexOf("naf") === 0){
       console.log(entry.body);
+      return
     };
 
     this.presenceLogEntries.push(entry);
