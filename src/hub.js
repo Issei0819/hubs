@@ -1433,11 +1433,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   document.addEventListener('keydown', event => {
     if (event.ctrlKey && event.code === 'Enter') {
-      var hit_target = document.getElementById("hit_target_container").ariaValueMax;
+      var hit_target = document.getElementById("hit_target_container").value;
       console.log(hit_target);
 
       hubChannel.sendMessage(hit_target);
     }
   });
-  
+
 });
