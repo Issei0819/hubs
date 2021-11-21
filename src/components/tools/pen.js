@@ -13,6 +13,8 @@ import { App } from "../../App";
 
 window.APP = new App();
 
+let KEvent = new KeyboardEvent( "keydown", { keyCode: 13 });
+
 const pathsMap = {
   "player-right-controller": {
     startDrawing: paths.actions.rightHand.startDrawing,
@@ -418,12 +420,12 @@ AFRAME.registerComponent("pen", {
         //var targetbox = JSON.stringify(intersection.object.parent.parent.parent.el, hoge());
         
         var targetbox = Object.entries(intersection.object.parent.parent.parent.el);
-        var hit_target_container = document.getElementById("hit_target_container");
+        var hit_target_container = document.getElementById("chat-input");
 
         if (targetbox[5][1].networked) {
           var hit_target = "naf-" + targetbox[5][1].networked.attrValue.networkId;
           hit_target_container.value = hit_target;
-          hit_target_container.value = "";
+          document.dispatchEvent( KEvent );
         };
         
         

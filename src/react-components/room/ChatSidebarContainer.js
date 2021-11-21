@@ -256,6 +256,7 @@ export function ChatSidebarContainer({ scene, canSpawnMessages, presences, occup
 
   const isMobile = AFRAME.utils.device.isMobile();
   const isOverMaxLength = message.length > MAX_MESSAGE_LENGTH;
+
   return (
     <ChatSidebar onClose={onClose}>
       <ChatMessageList ref={listRef} onScroll={onScrollList}>
