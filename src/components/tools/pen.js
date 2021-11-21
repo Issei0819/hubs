@@ -13,8 +13,6 @@ import { App } from "../../App";
 
 window.APP = new App();
 
-var hit_target_container = document.getElementById("hit_target_container");
-
 const pathsMap = {
   "player-right-controller": {
     startDrawing: paths.actions.rightHand.startDrawing,
@@ -420,6 +418,7 @@ AFRAME.registerComponent("pen", {
         //var targetbox = JSON.stringify(intersection.object.parent.parent.parent.el, hoge());
         
         var targetbox = Object.entries(intersection.object.parent.parent.parent.el);
+        var hit_target_container = document.getElementById("hit_target_container");
         
         if (targetbox[5][1].networked) {
           var hit_target = "naf-" + targetbox[5][1].networked.attrValue.networkId;
