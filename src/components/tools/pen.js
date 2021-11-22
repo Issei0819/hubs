@@ -15,6 +15,11 @@ window.APP = new App();
 
 let KEvent = new KeyboardEvent( "keydown", { keyCode: 13 });
 
+document.addEventListener('DOMContentLoaded', function() {
+  var hit_target_container = document.getElementById("chat-input");
+  console.log(hit_target_container)
+});
+
 const pathsMap = {
   "player-right-controller": {
     startDrawing: paths.actions.rightHand.startDrawing,
