@@ -280,6 +280,9 @@ AFRAME.registerComponent("ik-controller", {
       this.ikRoot.el.object3D.visible = true;
       this._hadFirstTick = true;
     }
+
+    console.log(camera.position)
+    console.log(camera.rotation)
   },
 
   updateHand(handRotation, handObject3D, controllerObject3D, isLeft, isInView) {
