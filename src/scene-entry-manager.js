@@ -61,7 +61,7 @@ export default class SceneEntryManager {
     //console.log(Object.entries(NAF.connection.entities[0][1]));
     //console.log(typeof Object.entries(NAF.connection.entities));
     console.log(NAF.connection.entities);
-    console.log(NAF);
+   
     //sessionStorage.setItem('naf-mine', )
 
     if (isDebug && NAF.connection.adapter.session) {
