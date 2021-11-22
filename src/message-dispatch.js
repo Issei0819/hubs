@@ -24,7 +24,7 @@ export default class MessageDispatch extends EventTarget {
 
   addToPresenceLog(entry) {
     entry.key = Date.now().toString();
-    var naf_Mine = sessionStorage.getItem('naf-mine'); 
+    //var naf_Mine = sessionStorage.getItem('naf-mine'); 
 
     if (entry.type ==="chat" && entry.body.indexOf("naf") === 0){
       //if (naf_Mine == entry.body) {
