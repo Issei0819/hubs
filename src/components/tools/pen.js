@@ -13,8 +13,6 @@ import { App } from "../../App";
 
 window.APP = new App();
 
-let KEvent = new KeyboardEvent( "keydown", { keyCode: 13 });
-
 document.addEventListener('DOMContentLoaded', function() {
   var hit_target_container = document.getElementById("chat-input");
   console.log(hit_target_container)
@@ -430,7 +428,6 @@ AFRAME.registerComponent("pen", {
         if (targetbox[5][1].networked) {
           var hit_target = "naf-" + targetbox[5][1].networked.attrValue.networkId;
           hit_target_container.value = hit_target;
-          document.dispatchEvent( KEvent );
         };
         
         
