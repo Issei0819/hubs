@@ -1431,12 +1431,24 @@ document.addEventListener("DOMContentLoaded", async () => {
       //this.classList.toggle('none');
   //});
 
+  var hit_target_container = document.getElementById("hit_target_container");
+
+  hit_target_container.addEventListener('change', event => {
+    if (event.ctrlKey && event.code === 'Enter') {
+      var hit_target = hit_target_container.value;
+
+      hubChannel.sendMessage(hit_target);
+      hit_target_container.value = "";
+    }
+  });
+
   document.addEventListener('keydown', event => {
     if (event.ctrlKey && event.code === 'Enter') {
-      var hit_target = document.getElementById("hit_target_container").value;
+      var hit_target = hit_target_container.value;
       console.log(hit_target);
 
       hubChannel.sendMessage(hit_target);
+      hit_target_container.value = "";
     }
   });
 
