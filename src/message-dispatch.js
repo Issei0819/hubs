@@ -7,6 +7,7 @@ import ducky from "./assets/models/DuckyMesh.glb";
 import { EventTarget } from "event-target-shim";
 import { ExitReason } from "./react-components/room/ExitedRoomScreen";
 import { LogMessageType } from "./react-components/room/ChatSidebar";
+import { entries } from "core-js/core/array";
 
 let uiRoot;
 // Handles user-entered messages
@@ -23,9 +24,12 @@ export default class MessageDispatch extends EventTarget {
 
   addToPresenceLog(entry) {
     entry.key = Date.now().toString();
+    var naf_Mine = sessionStorage.getItem('naf-mine'); 
 
     if (entry.type ==="chat" && entry.body.indexOf("naf") === 0){
-      console.log(entry.body);
+      //if (naf_Mine == entry.body) {
+        
+      //};
       return
     };
 
