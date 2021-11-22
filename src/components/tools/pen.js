@@ -13,10 +13,9 @@ import { App } from "../../App";
 
 window.APP = new App();
 
-document.addEventListener('DOMContentLoaded', function() {
-  var hit_target_container = document.getElementById("chat-input");
-  console.log(hit_target_container)
-});
+
+var hit_target_container = document.getElementById("hit_target_container");
+
 
 const pathsMap = {
   "player-right-controller": {
